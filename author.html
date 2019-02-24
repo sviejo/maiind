@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Trabajo Visualización De Datos (MAIIND)</title>
+		<meta name="description" content="website para la visualización de datos meteorológicos" />
+		<meta name="keywords" content="meteo, clima" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+		<!-- my javascript -->
+		<script language="javascript" type="text/javascript" src="js/clock.js"></script>
+	</head>
+	
+	<script type="text/javascript">	
+		window.onload = function () 
+		{
+			/*********** SETUP CLOCK & DATE ***********/
+			startTime();setDate();
+		}
+	</script>
+
+	<body>
+		<div id="main">
+			<div id="header">
+				<div id="fecha"></div>
+				<div id="reloj"></div>
+				<div id="logo">
+					<div id="logo_text">
+						<h1><a href="index.html"><span class="logo_colour">MAIIND</span></a></h1>
+						<h2>Visualización de datos</h2>
+					</div>
+				</div>
+				<div id="menubar">
+					<ul id="menu">
+						<!-- class="selected" highlight current page -->
+						<li><a href="index.html" title="Página de inicio">Inicio</a></li>
+						<li><a href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos" title="Aemet: Datos climatológicos">Aemet</a></li>
+						<li><a href="#" title="Selector de gráficos generados con d3">Gráficos d3</a>
+							<ul>
+								<li><a href="d3graphics_bars.html" title="Gráfico de barras con d3">Gráfico de barras</a></li>
+								<li><a href="d3graphics_pie.html" title="Gráfico circular con d3">Gráfico circular</a></li>
+								<li><a href="d3graphics_line.html" title="Gráfico lineal con d3">Gráfico lineal</a></li>
+								<li><a href="d3graphics_fileimport.html" title="Gráfico desde fichero .json con d3">Desde JSON ...</a></li>
+								<li><a href="d3graphics_linecomparison.html" title="Gráfico lineal comparativo de dos ficheros con d3">Comparador lineal</a></li>
+							</ul>
+						</li>
+						<li class="selected"><a href="author.html" title="Sobre mi...">Autora</a></li>
+					</ul>
+				</div>
+			</div>
+    
+			<div id="content_header"></div>
+			
+			<div id="site_content">			
+				<div id="banner"></div>
+				
+				<div id="content">
+					<!-- page content here -->
+					<h1>Sobre mi...</h1>
+
+					<div id="profile_photo_content">
+						<img id="profile_photo" src="img/noPhoto.png" alt="Profile Photo" />
+						<p><span class="bold_text">Nombre: </span><span>MiNombre</span></p>
+						<p><span class="bold_text">Apellidos: </span><span>Apellido1 Apellido2</span></p>
+						<p><span class="bold_text">Asignatura: </span><span>Nombre de la asignatura</span></p>
+						<p><span>Escuela Politécnica de Ingeniería de Gijón</span></p>
+					</div>
+				</div>
+			</div>
+		
+			<div id="content_footer"></div>
+				<div id="footer">
+					<p>
+						<a href="index.html" title="Página de inicio">Incio</a> | 
+						<a href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos" title="Aemet: Datos climatológicos">Aemet</a> | 
+						<a href="d3graphics_bars.html" title="Gráfico de barras con d3">Gráfico de barras</a> | 
+						<a href="d3graphics_pie.html" title="Gráfico circular con d3">Gráfico circular</a> | 
+						<a href="d3graphics_line.html" title="Gráfico lineal con d3">Gráfico lineal</a> | 
+						<a href="d3graphics_fileimport.html" title="Gráfico desde fichero .json con d3">Desde JSON ...</a> | 
+						<a href="d3graphics_linecomparison.html" title="Gráfico lineal comparativo de dos ficheros con d3">Comparador lineal</a> | 
+						<a href="author.html" title="Sobre mi...">Autora</a>
+					</p>
+					<p>Copyright &copy; VCG</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

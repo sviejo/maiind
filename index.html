@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Trabajo Visualización De Datos (MAIIND)</title>
+		<meta name="description" content="website para la visualización de datos meteorológicos" />
+		<meta name="keywords" content="meteo, clima" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+		<!-- javascript -->
+		<script language="javascript" type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
+		<!-- my javascript -->
+		<script language="javascript" type="text/javascript" src="js/clock.js"></script>
+		<script language="javascript" type="text/javascript" src="js/provinces.js"></script>
+		<script language="javascript" type="text/javascript" src="js/mapfunctions_d3.js"></script>
+	</head>
+	
+	<script type="text/javascript">	
+		window.onload = function () 
+		{
+			/*********** PROVINCES DATA LOADING ***********/
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() 
+			{
+				if (this.readyState == 4 && this.status == 200) 
+				{
+					loadProvincesData(this);
+					loadMapPointsFromProvinces();
+				}
+			};
+			xmlhttp.open("GET", "data/provinces_data.xml", true);
+			// avoid xml cache
+			xmlhttp.setRequestHeader("Cache-Control", "max-age=0");
+			xmlhttp.send();
+			
+			/*********** SETUP CLOCK & DATE ***********/
+			startTime();setDate();
+		}
+	</script>
+
+	<body>
+		<div id="main">
+			<div id="header">
+				<div id="fecha"></div>
+				<div id="reloj"></div>
+				<div id="logo">
+					<div id="logo_text">
+						<h1><a href="index.html"><span class="logo_colour">MAIIND</span></a></h1>
+						<h2>Visualización de datos</h2>
+					</div>
+				</div>
+				<div id="menubar">
+					<ul id="menu">
+						<!-- class="selected" highlight current page -->
+						<li class="selected"><a href="index.html" title="Página de inicio">Inicio</a></li>
+						<li><a href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos" title="Aemet: Datos climatológicos">Aemet</a></li>
+						<li><a href="#" title="Selector de gráficos generados con d3">Gráficos d3</a>
+							<ul>
+								<li><a href="d3graphics_bars.html" title="Gráfico de barras con d3">Gráfico de barras</a></li>
+								<li><a href="d3graphics_pie.html" title="Gráfico circular con d3">Gráfico circular</a></li>
+								<li><a href="d3graphics_line.html" title="Gráfico lineal con d3">Gráfico lineal</a></li>
+								<li><a href="d3graphics_fileimport.html" title="Gráfico desde fichero .json con d3">Desde JSON ...</a></li>
+								<li><a href="d3graphics_linecomparison.html" title="Gráfico lineal comparativo de dos ficheros con d3">Comparador lineal</a></li>
+							</ul>
+						</li>
+						<li><a href="author.html" title="Sobre mi...">Autora</a></li>
+					</ul>
+				</div>
+			</div>
+    
+			<div id="content_header"></div>
+			
+			<div id="site_content">
+				<div id="banner"></div>
+				
+				<div id="sidebar_container">				
+					<div class="sidebar">
+						<div class="sidebar_top"></div>
+						<div class="sidebar_item">
+							<h3>Top ciudades</h3>
+								<ul>
+									<li><a href="citycard.html?prov=Oviedo">Oviedo</a></li>
+									<li><a href="citycard.html?prov=Malaga">Málaga</a></li>
+									<li><a href="citycard.html?prov=Salamanca">Salamanca</a></li>
+									<li><a href="citycard.html?prov=Madrid">Madrid</a></li>
+									<li><a href="citycard.html?prov=Granada">Granada</a></li>
+									<li><a href="citycard.html?prov=Albacete">Albacete</a></li>
+									<li><a href="citycard.html?prov=Almeria">Almería</a></li>
+									<li><a href="citycard.html?prov=Bilbao">Bilbao</a></li>
+									<li><a href="citycard.html?prov=SantiagoDeCompostela">Santiago de Compostela</a></li>
+								</ul>
+						</div>
+						<div class="sidebar_base"></div>
+					</div>				
+				</div>
+			
+				<div id="content">
+					<!-- page content here -->
+					<h1>Seleccione una ciudad</h1>
+					<h5 class="oblique_text">(Acceda a información detallada sobre la provincia desde el mapa o desde el listado)</h5>
+					<div id="mapAnimation">
+						<div id="layer01"></div>
+					
+						<div id="layer02">
+							<img src="img/SpainWithProvinces.jpg" width="550px" height="350px" />
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div id="content_footer"></div>
+				<div id="footer">
+					<p>
+						<a href="index.html" title="Página de inicio">Incio</a> | 
+						<a href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos" title="Aemet: Datos climatológicos">Aemet</a> | 
+						<a href="d3graphics_bars.html" title="Gráfico de barras con d3">Gráfico de barras</a> | 
+						<a href="d3graphics_pie.html" title="Gráfico circular con d3">Gráfico circular</a> | 
+						<a href="d3graphics_line.html" title="Gráfico lineal con d3">Gráfico lineal</a> | 
+						<a href="d3graphics_fileimport.html" title="Gráfico desde fichero .json con d3">Desde JSON ...</a> | 
+						<a href="d3graphics_linecomparison.html" title="Gráfico lineal comparativo de dos ficheros con d3">Comparador lineal</a> | 
+						<a href="author.html" title="Sobre mi...">Autora</a>
+					</p>
+					<p>Copyright &copy; VCG</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

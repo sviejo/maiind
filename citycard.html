@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Trabajo Visualización De Datos (MAIIND)</title>
+		<meta name="description" content="website para la visualización de datos meteorológicos" />
+		<meta name="keywords" content="meteo, clima" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+		<!-- javascript -->
+		<script language="javascript" type="text/javascript" src="js/canvasjs/canvasjs.min.js"></script>
+		<script language="javascript" type="text/javascript" src="js/canvasjs/jquery.canvasjs.min.js"></script>
+		<!-- my javascript -->
+		<script language="javascript" type="text/javascript" src="js/clock.js"></script>
+		<script language="javascript" type="text/javascript" src="js/auxfunctions.js"></script>
+		<script language="javascript" type="text/javascript" src="js/citycard.js"></script>
+		<script language="javascript" type="text/javascript" src="js/provinces.js"></script>
+		<script language="javascript" type="text/javascript" src="js/filefunctions_canvasjs.js"></script>
+	</head>
+	
+	<script type="text/javascript">	
+		window.onload = function () 
+		{
+			/*********** CANVASJS CHART CONTAINER ***********/
+			var jschart = new CanvasJS.Chart("chartContainer", 
+			{ 
+				theme: "theme2",
+				title: 
+				{
+					fontSize: 30,
+					padding: 10,
+					margin: 15,
+					borderThickness: 0.2,
+					cornerRadius: 5
+				},
+				data: [
+				{
+					dataPoints: []
+				}]
+			});
+		
+			/*********** PARSE URL DATA ***********/
+			var curCity = getCityDataFromURL();
+			
+			/*********** PROVINCES DATA LOADING ***********/
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() 
+			{
+				if (this.readyState == 4 && this.status == 200) 
+				{
+					loadProvincesData(this);
+					document.getElementById("provincePicture").innerHTML = loadProvincePicture(this, curCity);
+					document.getElementById("provinceDetail").innerHTML = loadProvinceDetails(this, curCity);
+					document.getElementById("provinceStats").innerHTML = loadProvinceDeepStats(curCity);
+				}
+			};
+			xmlhttp.open("GET", "data/provinces_data.xml", true);
+			// avoid xml cache
+			xmlhttp.setRequestHeader("Cache-Control", "max-age=0");
+			xmlhttp.send();
+			
+			/*********** ACTION BUTTONS ONCLICK FUNCTION ***********/
+			document.getElementById("button_rain").onclick=function()
+			{ 
+				readTextFile("data/rain/Precip_"+currentCityFullName+".csv", 0, jschart); 
+				var raindiv = document.getElementById('rainStatsTable');
+				var tempdiv = document.getElementById('tempStatsTable');
+				if (raindiv.style.display == 'none' || raindiv.style.display == '')
+				{
+					raindiv.style.display = 'block';
+					tempdiv.style.display = 'none';
+				}
+				else
+				{
+					raindiv.style.display = 'block';
+					tempdiv.style.display = 'none';
+				}
+			};
+			
+			document.getElementById("button_temp").onclick=function()
+			{ 
+				readTextFile("data/temperature/Temp_"+currentCityFullName+".csv", 1, jschart); 
+				var raindiv = document.getElementById('rainStatsTable');
+				var tempdiv = document.getElementById('tempStatsTable');
+				if (tempdiv.style.display == 'none' || tempdiv.style.display == '')
+				{
+					tempdiv.style.display = 'block';
+					raindiv.style.display = 'none';
+				}
+				else
+				{
+					tempdiv.style.display = 'block';
+					raindiv.style.display = 'none';
+				}
+			};
+	
+			/*********** SETUP CLOCK & DATE ***********/
+			startTime();setDate();
+		}
+	</script>
+	<body>
+		<div id="main">
+			<div id="header">
+				<div id="fecha"></div>
+				<div id="reloj"></div>
+				<div id="logo">
+					<div id="logo_text">
+						<h1><a href="index.html"><span class="logo_colour">MAIIND</span></a></h1>
+						<h2>Visualización de datos</h2>
+					</div>
+				</div>
+				<div id="menubar">
+					<ul id="menu">
+						<!-- class="selected" highlight current page -->
+						<li><a href="index.html" title="Página de inicio">Inicio</a></li>
+						<li><a href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos" title="Aemet: Datos climatológicos">Aemet</a></li>
+						<li><a href="#" title="Selector de gráficos generados con d3">Gráficos d3</a>
+							<ul>
+								<li><a href="d3graphics_bars.html" title="Gráfico de barras con d3">Gráfico de barras</a></li>
+								<li><a href="d3graphics_pie.html" title="Gráfico circular con d3">Gráfico circular</a></li>
+								<li><a href="d3graphics_line.html" title="Gráfico lineal con d3">Gráfico lineal</a></li>
+								<li><a href="d3graphics_fileimport.html" title="Gráfico desde fichero .json con d3">Desde JSON ...</a></li>
+								<li><a href="d3graphics_linecomparison.html" title="Gráfico lineal comparativo de dos ficheros con d3">Comparador lineal</a></li>
+							</ul>
+						</li>
+						<li><a href="author.html" title="Sobre mi...">Autora</a></li>
+					</ul>
+				</div>
+			</div>
+    
+			<div id="content_header"></div>
+			
+			<div id="site_content">
+				<div id="sidebar_container">
+					<div class="sidebar">
+						<div class="sidebar_top"></div>
+						<div class="sidebar_item">
+							<div id="provinceStats"></div>
+						</div>
+						<div class="sidebar_base"></div>
+					</div>
+				</div>
+			
+				<div id="content">
+					<!-- page content here -->			
+					<div id="provincePicture"></div>
+					<div id="provinceDetail"></div>
+					<div id="button_bar">
+						<input id="button_rain" type="button" value="Precipitaciones" />
+						<input id="button_temp" type="button" value="Temperaturas" />
+					</div>
+					<div id="chartContainer"></div>
+				</div>
+			</div>
+		
+			<div id="content_footer"></div>
+				<div id="footer">
+					<p>
+						<a href="index.html" title="Página de inicio">Incio</a> | 
+						<a href="http://www.aemet.es/es/serviciosclimaticos/datosclimatologicos" title="Aemet: Datos climatológicos">Aemet</a> | 
+						<a href="d3graphics_bars.html" title="Gráfico de barras con d3">Gráfico de barras</a> | 
+						<a href="d3graphics_pie.html" title="Gráfico circular con d3">Gráfico circular</a> | 
+						<a href="d3graphics_line.html" title="Gráfico lineal con d3">Gráfico lineal</a> | 
+						<a href="d3graphics_fileimport.html" title="Gráfico desde fichero .json con d3">Desde JSON ...</a> | 
+						<a href="d3graphics_linecomparison.html" title="Gráfico lineal comparativo de dos ficheros con d3">Comparador lineal</a> | 
+						<a href="author.html" title="Sobre mi...">Autora</a>
+					</p>
+					<p>Copyright &copy; VCG</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

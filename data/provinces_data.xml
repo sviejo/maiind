@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<provinces>
+  <province id="Malaga">
+	<region>Andalucía</region>
+	<capital>Málaga</capital>
+	<provincefulltitle>[Málaga - Andalucía]</provincefulltitle>
+	<maplocation x="270" y="281" />
+	<avgrain first_year="1981" last_year="2010" />
+	<avgtemp first_year="1981" last_year="2010" />
+  </province>
+  
+  <province id="Oviedo">
+	<region>Principado de Asturias</region>
+	<capital>Oviedo</capital>
+	<provincefulltitle>[Principado de Asturias]</provincefulltitle>
+	<maplocation x="220" y="21" />
+	<avgrain first_year="1981" last_year="2010" />
+	<avgtemp first_year="1981" last_year="2010" />
+  </province>
+  
+  <province id="Granada">
+	<region>Andalucía</region>
+	<capital>Granada</capital>
+	<provincefulltitle>[Granada - Andalucía]</provincefulltitle>
+	<maplocation x="305" y="265" />
+	<avgrain first_year="1981" last_year="2010" />
+	<avgtemp first_year="1981" last_year="2010" />
+  </province>
+  
+  <province id="Madrid">
+	<region>Comunidad Autónoma de Madrid</region>
+	<capital>Madrid</capital>
+	<provincefulltitle>[Comunidad De Madrid]</provincefulltitle>
+	<maplocation x="290" y="140" />
+	<avgrain first_year="1981" last_year="2010" />
+	<avgtemp first_year="1981" last_year="2010" />
+  </province>
+  
+  <province id="Salamanca">
+	<region>Castilla León</region>
+	<capital>Salamanca</capital>
+	<provincefulltitle>[Salamanca - Castilla León]</provincefulltitle>
+	<maplocation x="230" y="115" />
+	<avgrain first_year="1981" last_year="2010" />
+	<avgtemp first_year="1981" last_year="2010" />
+  </province>
+  
+  <province id="Albacete">
+	<region>Castilla La Mancha</region>
+	<capital>Albacete</capital>
+	<provincefulltitle>[Albacete - Castilla La Mancha]</provincefulltitle>
+	<maplocation x="348" y="192" />
+	<avgrain first_year="1981" last_year="2010" />
+	<avgtemp first_year="1981" last_year="2010" />
+  </province>
+  
+  <province id="Almeria">
+	<region>Andalucía</region>
+	<capital>Almería</capital>
+	<provincefulltitle>[Almería - Andalucía]</provincefulltitle>
+	<maplocation x="338" y="272" />
+	<avgrain first_year="1981" last_year="2010" />
+	<avgtemp first_year="1981" last_year="2010" />
+  </province>
+ 
+  <province id="Bilbao">
+	<region>País Vasco</region>
+	<capital>Bilbao</capital>
+	<provincefulltitle>[Vizcaya - País Vasco]</provincefulltitle>
+	<maplocation x="308" y="23" />
+	<avgrain first_year="1981" last_year="2010" />
+	<avgtemp first_year="1981" last_year="2010" />
+  </province>
+  
+  <province id="SantiagoDeCompostela">
+	<region>Galicia</region>
+	<capital>Santiago de Compostela</capital>
+	<provincefulltitle>[A Coruña - Galicia]</provincefulltitle>
+	<maplocation x="147" y="34" />
+	<avgrain first_year="1981" last_year="2010" />
+	<avgtemp first_year="1981" last_year="2010" />
+  </province>
+</provinces>
